@@ -1,0 +1,41 @@
+# Promblem - filter employees 
+# table :--
+| name  | salary | experience_years | performance_score |
+| Arun  |  45000 |                1 |                65 |
+| Ravi  |  70000 |                5 |                82 |
+| Aman  |  85000 |                4 |                91 |
+| Raj   |  55000 |                2 |                74 |
+| Neha  |  95000 |                7 |                96 |
+| Kiran |  65000 |                3 |                88 |
+| Priya |  80000 |                6 |                79 |
+
+Question:
+- score >=90 AND salary >=80000 AND experience >=4 → Top
+- score >=85 AND experience >=3 → Excellent
+- score >=75 OR salary >=70000 → Good
+- experience >=2 → Average
+- Otherwise → Needs Improvement 
+
+
+CODE :-- 
+SELECT
+    name,
+    salary,
+    experience_years,
+    performance_score,
+    CASE
+        WHEN performance_score >= 90
+             AND salary >= 80000
+             AND experience_years >= 4
+            THEN 'Top'
+        WHEN performance_score >= 85
+             AND experience_years >= 3
+            THEN 'Excellent'
+        WHEN performance_score >= 75
+             OR salary >= 70000
+            THEN 'Good'
+        WHEN experience_years >= 2
+            THEN 'Average'
+        ELSE 'Needs Improvement'
+    END AS employee_category
+FROM Employees;
